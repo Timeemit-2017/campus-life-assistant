@@ -1,0 +1,43 @@
+# 仓库内统一使用 LF，检出时不转换（跨 Windows / macOS 协作）
+* text=auto eol=lf
+
+# 明确文本类型
+*.js      text eol=lf
+*.mjs     text eol=lf
+*.cjs     text eol=lf
+*.ts      text eol=lf
+*.json    text eol=lf
+*.wxml    text eol=lf
+*.wxss    text eol=lf
+*.wxs     text eol=lf
+*.md      text eol=lf
+*.yml     text eol=lf
+*.yaml    text eol=lf
+*.css     text eol=lf
+*.html    text eol=lf
+
+# Windows 脚本保留 CRLF
+*.ps1     text eol=crlf
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+
+# 二进制，不做行尾与文本处理
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.webp    binary
+*.ico     binary
+*.pdf     binary
+*.zip     binary
+*.ttf     binary
+*.woff    binary
+*.woff2   binary
+
+# 锁文件在合并时视为二进制，避免手工解冲突（删掉重新 install）
+package-lock.json  merge=binary -diff
+pnpm-lock.yaml     merge=binary -diff
+yarn.lock          merge=binary -diff
+
+# 语言统计不把文档算进代码量
+docs/** linguist-documentation

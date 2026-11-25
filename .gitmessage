@@ -1,0 +1,12 @@
+
+# <type>(<scope>): <50 字符内简述，不加句号>
+#
+# type：feat fix hotfix perf refactor style docs test build ci chore revert
+# scope：auth home course cafeteria library secondhand order profile api ui config deps docs
+#
+# ── 正文：写「为什么」，不写「改了什么」（diff 已经说明了）──────────────
+#
+#
+# ── 脚注（可选）────────────────────────────────────────────────────
+# Closes #12
+# BREAKING CHANGE: 说明不兼容变更

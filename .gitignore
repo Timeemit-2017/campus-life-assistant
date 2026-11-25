@@ -1,0 +1,45 @@
+# —— 依赖 ——
+node_modules/
+miniprogram_npm/
+cloudfunctions/*/node_modules/
+.pnpm-store/
+
+# —— 微信开发者工具 ——
+project.private.config.json
+.miniprogram/
+.wechat-miniprogram/
+
+# —— 构建产物 ——
+dist/
+unpackage/
+build/
+coverage/
+
+# —— 配置与密钥（绝不入库）——
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets.json
+
+# —— 编辑器 / IDE ——
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# —— 系统垃圾 ——
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# —— 日志 ——
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*

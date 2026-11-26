@@ -3,11 +3,13 @@ node_modules/
 miniprogram_npm/
 cloudfunctions/*/node_modules/
 .pnpm-store/
+.npm-cache/
 
-# —— 微信开发者工具 ——
+# —— 微信开发者工具 / HBuilderX ——
 project.private.config.json
 .miniprogram/
 .wechat-miniprogram/
+.hbuilderx/
 
 # —— 构建产物 ——
 dist/

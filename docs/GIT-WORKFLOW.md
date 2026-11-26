@@ -420,25 +420,31 @@ hotfix 合并后务必确认 `main` 已包含该修复，不要只发版不合�
 
 ### 8.1 必须入库
 
-- 小程序源码：`pages/`、`components/`、`utils/`、`app.js`、`app.json`、`app.wxss`
-- `project.config.json`（团队共享的公共配置）
+本项目是 uni-app（Vue 3 + Vite）工程，源码全部在 `src/` 下：
+
+- 应用骨架：`src/main.js`、`src/App.vue`、`src/pages.json`、`src/manifest.json`、`src/uni.scss`
+- 页面与组件：`src/pages/`、`src/components/`、`src/static/`、`src/utils/`、`src/api/`、`src/store/`
+- 工程配置：`package.json`、`package-lock.json`、`vite.config.js`、`index.html`
+- 协同配置：`.gitignore`、`.gitattributes`、`.editorconfig`、CI 配置
 - 云函数源码 `cloudfunctions/<fn>/index.js` 与 `package.json`（**不含** `node_modules`）
-- 文档、`.gitignore`、`.gitattributes`、CI 配置
+- 文档
 
 ### 8.2 禁止入库
 
 | 类型 | 举例 | 处理方式 |
 | --- | --- | --- |
-| 个人 IDE 配置 | `project.private.config.json` | 已在 `.gitignore` 中忽略 |
-| 依赖目录 | `node_modules/`、`miniprogram_npm/` | 忽略，靠 `npm install` / 构建生成 |
+| 个人 IDE 配置 | `project.private.config.json`、`.hbuilderx/` | 已在 `.gitignore` 中忽略 |
+| 依赖目录 | `node_modules/`、`.npm-cache/` | 忽略，靠 `npm install` 生成 |
 | 密钥凭证 | AppSecret、云环境密钥、第三方 API Key、`.env` | 用 `.env.example` 占位 + 本地 `.env` |
-| 构建产物 | `dist/`、`unpackage/`、`.miniprogram/` | 忽略 |
+| 构建产物 | `dist/`、`unpackage/`、`.miniprogram/` | 忽略，构建时生成 |
 | 系统垃圾 | `.DS_Store`、`Thumbs.db`、`desktop.ini` | 忽略 |
 | 大二进制 | 视频、PSD、整包设计稿 | 放网盘/图床，仓库留链接 |
 
+`package-lock.json` **必须入库**——锁文件是团队依赖一致的唯一保障；`.gitattributes` 已把它标记为 `merge=binary`，冲突时删掉重装而不是手工合并。
+
 ### 8.3 密钥的正确姿势
 
-小程序前端代码里**不放任何秘密**——小程序包可被反编译，`app.js` 里的 AppSecret 等于公开。
+小程序前端代码里**不放任何秘密**——小程序包可被反编译，打进 `dist/` 的 AppSecret 等于公开。
 
 - AppSecret、云开发密钥只放**云函数环境变量**或服务端。
 - 本地开发用的配置写 `.env`，模板提交 `.env.example`：
@@ -518,7 +524,7 @@ git switch -c feat/xxx <hash>
 | PR 显示 200 个文件改动 | 分支太久没同步 + 顺便格式化了 | 拆分支，格式化单独一个 `style:` 提交 |
 | 合并后 `main` 跑不起来 | squash 时丢了依赖锁文件或漏提交新文件 | 立刻 `git revert`，重新提 PR 修 |
 | `--force` 覆盖了同事的提交 | 用了 `--force` | 用 `--force-with-lease`；被覆盖的提交用 reflog 在同事机器或远端恢复 |
-| 小程序包体积超限 | 大图/依赖直接进包 | 图片走 CDN，检查 `miniprogram_npm` 体积，按需分包 |
+| 小程序包体积超限（主包 > 2 MB） | 大图/依赖直接进包 | 图片走 CDN，检查 `dist/build/mp-weixin/common/vendor.js` 体积，拆分 `subPackages` |
 
 ---
 

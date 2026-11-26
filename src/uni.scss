@@ -1,0 +1,38 @@
+/**
+ * uni.scss —— 全局 SCSS 变量
+ *
+ * 该文件会被自动注入到每个 vue 文件的 <style lang="scss"> 中，
+ * 页面里无需 @import 即可直接使用下面的变量。
+ * 只放变量和 mixin，不要写会产出 CSS 的规则。
+ */
+
+/* —— 品牌色 —— */
+$brand-color: #3b7cff;
+$brand-color-light: #e8f0ff;
+
+/* —— 语义色 —— */
+$color-success: #00b578;
+$color-warning: #ff8f1f;
+$color-error: #fa5151;
+$color-text-primary: #1f2329;
+$color-text-regular: #5c6066;
+$color-text-secondary: #8f959e;
+$color-border: #ebedf0;
+$color-bg-page: #f5f6f8;
+$color-bg-card: #ffffff;
+
+/* —— 字号 / 圆角 / 间距 —— */
+$font-size-sm: 24rpx;
+$font-size-base: 28rpx;
+$font-size-lg: 32rpx;
+$font-size-xl: 40rpx;
+
+$radius-sm: 8rpx;
+$radius-base: 16rpx;
+$radius-lg: 24rpx;
+
+$space-xs: 8rpx;
+$space-sm: 16rpx;
+$space-base: 24rpx;
+$space-lg: 32rpx;
+$space-xl: 48rpx;
